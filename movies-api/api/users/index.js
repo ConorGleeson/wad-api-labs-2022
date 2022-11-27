@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 
 import movieModel from '../movies/movieModel';
 
+
 const router = express.Router(); // eslint-disable-line
 
 // Get all users
@@ -20,6 +21,11 @@ router.post('/',asyncHandler( async (req, res, next) => {
       return next();
     }
     if (req.query.action === 'register') {
+      const passTest = new RegExp("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{5,}$");
+      if(!passTest.test(req.body.password)){
+        res.status(401).json({success:false, msg:"password must be at least 5 characters long and contain at least one letter and one number"})
+        return next();
+      }
       await User.create(req.body);
       res.status(201).json({code: 201, msg: 'Successful created new user.'});
     } else {

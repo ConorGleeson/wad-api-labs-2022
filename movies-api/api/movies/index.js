@@ -1,6 +1,7 @@
 import express from 'express';
 import { movies, movieReviews, movieDetails } from './moviesData';
 
+import {movies, movieReviews} from './movieData.js';
 
 import movieModel from './movieModel';
 import asyncHandler from 'express-async-handler';
