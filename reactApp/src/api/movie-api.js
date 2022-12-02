@@ -3,9 +3,11 @@ export const login = (username, password) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        method: 'post',
+        method: 'POST',
         body: JSON.stringify({ username: username, password: password })
-    }).then(res => res.json())
+    }).then(res => {
+       // console.log(res)
+        res.json()})
 };
 
 export const signup = (username, password) => {
